@@ -3,7 +3,7 @@ class NotesController < ApplicationController
 
   # GET /notes
   def index
-    @notes = Note.all
+    @notes = Note.all.where(user_id: current_user_id)
 
     render json: @notes
   end
@@ -16,8 +16,10 @@ class NotesController < ApplicationController
   # POST /notes
   def create
     @note = Note.new(note_params)
+    @note.user_id = current_user_id
 
     if @note.save
+      CleanupNoteJob.set(wait: 5.minutes).perform_later(@note.id)
       render json: @note, status: :created, location: @note
     else
       render json: @note.errors, status: :unprocessable_entity
@@ -41,7 +43,7 @@ class NotesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_note
-      @note = Note.find(params[:id])
+      @note = Note.find_by(id: params[:id], user_id: current_user_id)
     end
 
     # Only allow a list of trusted parameters through.
