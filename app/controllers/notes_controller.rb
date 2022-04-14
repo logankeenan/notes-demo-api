@@ -19,6 +19,7 @@ class NotesController < ApplicationController
     @note.user_id = current_user_id
 
     if @note.save
+      CleanupNoteJob.set(wait: 10.minutes).perform_later(@note.id)
       render json: @note, status: :created, location: @note
     else
       render json: @note.errors, status: :unprocessable_entity
