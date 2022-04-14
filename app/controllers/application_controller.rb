@@ -35,7 +35,8 @@ class ApplicationController < ActionController::API
   end
 
   def crypto
-    ActiveSupport::MessageEncryptor.new(Rails.application.secrets.secret_key_base[0..31])
+    secret_key_base = Rails.application.secrets.secret_key_base || ENV["SECRET_KEY_BASE"]
+    ActiveSupport::MessageEncryptor.new(secret_key_base[0..31])
   end
 
 end
