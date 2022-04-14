@@ -25,7 +25,12 @@ class ApplicationController < ActionController::API
   def write_identity
     encrypt_user_id = crypto.encrypt_and_sign(@user_id)
 
-    response.set_cookie(IDENTITY_KEY, encrypt_user_id)
+    response.set_cookie(IDENTITY_KEY, {
+      value: encrypt_user_id,
+      path: "/",
+      secure: ENV["SECURE_COOKIES"],
+      same_site: ENV["SECURE_COOKIES"] ? :none : :Lax
+    })
     response.set_header(IDENTITY_KEY, encrypt_user_id)
   end
 
