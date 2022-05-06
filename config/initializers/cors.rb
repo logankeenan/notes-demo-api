@@ -10,7 +10,7 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
     if Rails.env.development?
       origins 'localhost:4000'
     else
-      origins "notes-demo-spa.pages.dev" "notes-demo-cf-worker.logankeenan.workers.dev"
+      origins "notes-demo-spa.pages.dev"
     end
 
     resource "*",
