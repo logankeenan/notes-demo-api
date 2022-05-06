@@ -1,24 +1,9 @@
-# README
+# RORA - Notes Demo API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+The API used for the various notes demo applications. It allows users to create temporary notes which are deleted
+after 5 minutes. 
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Used by
+* [notes-demo-server](https://github.com/rora-rs/notes-demo-server)
+* [notes-demo-cf-worker](https://github.com/rora-rs/notes-demo-cf-worker/)
+* [notes-demo](https://github.com/rora-rs/notes-demo)
