@@ -10,12 +10,12 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
     if Rails.env.development?
       origins 'localhost:4000'
     else
-      origins "notes-demo-spa.pages.dev"
+      origins "notes-demo-spa.pages.dev" "notes-demo-cf-worker.logankeenan.workers.dev"
     end
 
     resource "*",
              headers: :any,
-             expose: ["user_id" "Set-Cookie"],
+             expose: ["user_id"],
              methods: [:get, :post, :put, :patch, :delete, :options, :head]
   end
 end
