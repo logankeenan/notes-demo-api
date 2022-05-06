@@ -14,7 +14,8 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
     end
 
     resource "*",
-      headers: :any,
-      methods: [:get, :post, :put, :patch, :delete, :options, :head]
+             headers: :any,
+             expose: ["user_id" "Set-Cookie"],
+             methods: [:get, :post, :put, :patch, :delete, :options, :head]
   end
 end
