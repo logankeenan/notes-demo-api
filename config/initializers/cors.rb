@@ -7,11 +7,7 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    if Rails.env.development?
-      origins 'localhost:4000'
-    else
-      origins "notes-demo-spa.pages.dev"
-    end
+    origins 'localhost:4000', "notes-demo-spa.pages.dev"
 
     resource "*",
              headers: :any,
