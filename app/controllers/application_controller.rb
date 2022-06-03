@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::API
   include ::ActionController::Cookies
-  IDENTITY_KEY = "user_id"
+  IDENTITY_KEY = "user-id"
 
   before_action :read_identity
   after_action :write_identity
@@ -19,7 +19,7 @@ class ApplicationController < ActionController::API
       @user_id = SecureRandom.uuid
     end
 
-    puts @user_id
+    @user_id
   end
 
   def write_identity
